@@ -1,0 +1,71 @@
+{
+  "Version": 1,
+  "WorkspaceRootPath": "E:\\game\\unity\\mypro\\My project\\",
+  "Documents": [
+    {
+      "AbsoluteMoniker": "D:0:0:{32C3BDE6-E125-3128-82C1-25D0441455A3}|Assembly-CSharp.csproj|e:\\game\\unity\\mypro\\my project\\assets\\version1.3.2\\circularbackpack.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{32C3BDE6-E125-3128-82C1-25D0441455A3}|Assembly-CSharp.csproj|solutionrelative:assets\\version1.3.2\\circularbackpack.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{32C3BDE6-E125-3128-82C1-25D0441455A3}|Assembly-CSharp.csproj|e:\\game\\unity\\mypro\\my project\\assets\\version1.3.2\\itemdraghandler.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{32C3BDE6-E125-3128-82C1-25D0441455A3}|Assembly-CSharp.csproj|solutionrelative:assets\\version1.3.2\\itemdraghandler.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{32C3BDE6-E125-3128-82C1-25D0441455A3}|Assembly-CSharp.csproj|e:\\game\\unity\\mypro\\my project\\assets\\version1.3.2\\backpackslot.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{32C3BDE6-E125-3128-82C1-25D0441455A3}|Assembly-CSharp.csproj|solutionrelative:assets\\version1.3.2\\backpackslot.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    }
+  ],
+  "DocumentGroupContainers": [
+    {
+      "Orientation": 0,
+      "VerticalTabListWidth": 256,
+      "DocumentGroups": [
+        {
+          "DockedWidth": 200,
+          "SelectedChildIndex": 2,
+          "Children": [
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "ItemDragHandler.cs",
+              "DocumentMoniker": "E:\\game\\unity\\mypro\\My project\\Assets\\version1.3.2\\ItemDragHandler.cs",
+              "RelativeDocumentMoniker": "Assets\\version1.3.2\\ItemDragHandler.cs",
+              "ToolTip": "E:\\game\\unity\\mypro\\My project\\Assets\\version1.3.2\\ItemDragHandler.cs",
+              "RelativeToolTip": "Assets\\version1.3.2\\ItemDragHandler.cs",
+              "ViewState": "AgIAAHMAAAAAAAAAAAAwwIMAAAAFAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-10-29T05:54:28.747Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "BackpackSlot.cs",
+              "DocumentMoniker": "E:\\game\\unity\\mypro\\My project\\Assets\\version1.3.2\\BackpackSlot.cs",
+              "RelativeDocumentMoniker": "Assets\\version1.3.2\\BackpackSlot.cs",
+              "ToolTip": "E:\\game\\unity\\mypro\\My project\\Assets\\version1.3.2\\BackpackSlot.cs",
+              "RelativeToolTip": "Assets\\version1.3.2\\BackpackSlot.cs",
+              "ViewState": "AgIAAFwBAAAAAAAAAAA7wGkBAAAFAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-10-29T05:54:03.702Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "CircularBackpack.cs",
+              "DocumentMoniker": "E:\\game\\unity\\mypro\\My project\\Assets\\version1.3.2\\CircularBackpack.cs",
+              "RelativeDocumentMoniker": "Assets\\version1.3.2\\CircularBackpack.cs",
+              "ToolTip": "E:\\game\\unity\\mypro\\My project\\Assets\\version1.3.2\\CircularBackpack.cs",
+              "RelativeToolTip": "Assets\\version1.3.2\\CircularBackpack.cs",
+              "ViewState": "AgIAACcBAAAAAAAAAAAwwEQBAAAFAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-10-29T05:52:09.08Z",
+              "EditorCaption": ""
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

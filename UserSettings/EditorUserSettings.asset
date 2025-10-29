@@ -1,0 +1,50 @@
+%YAML 1.1
+%TAG !u! tag:yousandi.cn,2023:
+--- !u!162 &1
+EditorUserSettings:
+  m_ObjectHideFlags: 0
+  serializedVersion: 4
+  m_ConfigSettings:
+    RecentlyUsedSceneGuid-0:
+      value: 5455525f065058020b595c7044215d44141649287b7b7168782c4e65b5e36c60
+      flags: 0
+    RecentlyUsedSceneGuid-1:
+      value: 515250075c0c595e5f5a5e71122159444e4e4a2f7a7d7f602f284d66b4b76661
+      flags: 0
+    RecentlyUsedSceneGuid-2:
+      value: 5709560354035d590c570e7a14200b4417151a7b287e25667b7b1c6ab6e26268
+      flags: 0
+    RecentlyUsedSceneGuid-3:
+      value: 51050c5103035d5e5b0b547348720a44464e4b7879712067792a1861bab4673b
+      flags: 0
+    RecentlyUsedSceneGuid-4:
+      value: 050300500106080b0856587211750744434f1e2e297d7535797c4a62bbb7606b
+      flags: 0
+    RecentlyUsedSceneGuid-5:
+      value: 0650565e5d025b0b5b0f592447700c4442164d2f2a7a7661747f1b35b5e1653a
+      flags: 0
+    RecentlyUsedSceneGuid-6:
+      value: 01520d5403045b080f5e5a7314730c444f4e4c73282b7631782d4463b5e5323c
+      flags: 0
+    RecentlyUsedSceneGuid-7:
+      value: 5154575004025a5f5f08082114735e4413164b2e2a787333752a4530e3b4606f
+      flags: 0
+    vcSharedLogLevel:
+      value: 0d5e400f0650
+      flags: 0
+  m_VCAutomaticAdd: 1
+  m_VCDebugCom: 0
+  m_VCDebugCmd: 0
+  m_VCDebugOut: 0
+  m_SemanticMergeMode: 2
+  m_DesiredImportWorkerCount: 8
+  m_StandbyImportWorkerCount: 2
+  m_IdleImportWorkerShutdownDelay: 60000
+  m_VCShowFailedCheckout: 1
+  m_VCOverwriteFailedCheckoutAssets: 1
+  m_VCProjectOverlayIcons: 1
+  m_VCHierarchyOverlayIcons: 1
+  m_VCOtherOverlayIcons: 1
+  m_VCAllowAsyncUpdate: 1
+  m_VCScanLocalPackagesOnConnect: 1
+  m_ArtifactGarbageCollection: 1
