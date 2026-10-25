@@ -3,19 +3,19 @@ using UnityEngine;
 public class Dice : MonoBehaviour
 {
     private Rigidbody rb;
-    public int currentPoints = 0; // �洢��ǰ����
+    public int currentPoints = 0; // 存储当前点数
     public bool isStopped = false;
 
     void Start()
     {
         rb = GetComponent<Rigidbody>();
-        // ��һ����ʼ�������ת����֤���ʱ�������
+        // 给一个初始的随机旋转，保证落地时的随机性
         transform.rotation = Random.rotation;
     }
 
     void Update()
     {
-        // ֻ�е������ٶȷǳ���ʱ���ż������
+        // 只有当骰子速度非常慢时，才计算点数
         if (rb.velocity.sqrMagnitude < 0.01f && rb.angularVelocity.sqrMagnitude < 0.01f)
         {
             isStopped = true;
@@ -29,7 +29,7 @@ public class Dice : MonoBehaviour
 
     void CalculateUpFace()
     {
-        // �����׼���Ӳ��֣�
+        // 假设标准骰子布局：
         // local up (+y) = 1
         // local down (-y) = 6
         // local forward (+z) = 2
@@ -37,7 +37,7 @@ public class Dice : MonoBehaviour
         // local right (+x) = 3
         // local left (-x) = 4
 
-        // ��ȡ���Ӹ�����ķ�������
+        // 获取骰子各个面的方向向量
         Vector3[] directions = new Vector3[] {
             transform.up,           // 1
             transform.forward,      // 2
@@ -50,7 +50,7 @@ public class Dice : MonoBehaviour
         float maxDot = -1.0f;
         int sideIndex = 0;
 
-        // ѭ���Ƚ��ĸ�����ӽ���������ġ��ϡ� (Vector3.up)
+        // 循环比较哪个面最接近世界坐标的“上” (Vector3.up)
         for (int i = 0; i < directions.Length; i++)
         {
             float dot = Vector3.Dot(directions[i], Vector3.up);
@@ -61,7 +61,7 @@ public class Dice : MonoBehaviour
             }
         }
 
-        // ��������+1 ��Ϊ���� (0->1, 1->2, ...)
+        // 数组索引+1 即为点数 (0->1, 1->2, ...)
         currentPoints = sideIndex + 1;
     }
 }

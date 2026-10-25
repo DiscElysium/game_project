@@ -2,8 +2,8 @@ import type { Metadata } from "next";
 import "./globals.css";
 
 export const metadata: Metadata = {
-  title: "�������� �� ������Ϸ",
-  description: "����ɫ���ɫ�� 1-bit �������ģ�DeepSeek ���ɶ��ֵ�΢���顣",
+  title: "假面骰子 · 在线游戏",
+  description: "深棕色与白色的 1-bit 心理博弈，DeepSeek 生成对手的微表情。",
   other: {
     "codex-preview": "development",
   },

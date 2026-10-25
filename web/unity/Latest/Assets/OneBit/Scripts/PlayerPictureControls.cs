@@ -28,8 +28,8 @@ public partial class PlayerUIController
         AddPictureSlider(root,"Midtones",124,.5f,1.8f,3);
         AddPictureSlider(root,"Dither",102,1,3,4);
         patternLabel=Label(root,"Threshold","",14,80,176,16,12);
-        ButtonAt(root,"Dither 4","4��4",194,80,62,18,()=>SetPattern(4),12);
-        ButtonAt(root,"Dither 8","8��8",262,80,66,18,()=>SetPattern(8),12);
+        ButtonAt(root,"Dither 4","4×4",194,80,62,18,()=>SetPattern(4),12);
+        ButtonAt(root,"Dither 8","8×8",262,80,66,18,()=>SetPattern(8),12);
         connectionLabel=Label(root,"API state","",14,60,314,16,12);
         keyInput=SpeechInput(root,14,36,314,20); keyInput.characterLimit=160; keyInput.contentType=InputField.ContentType.Password;
         ((Text)keyInput.placeholder).text="AI is configured by the website server."; keyInput.interactable=false;
@@ -72,7 +72,7 @@ public partial class PlayerUIController
         if(apiStatusText) apiStatusText.transform.parent.gameObject.SetActive(false);
         if(!picturePanel || !picturePanel.activeSelf || !Tone) return;
         var p=OneBitPresentation.Instance;
-        if(p) rasterLabel.text=$"{p.RenderWidth} �� {p.RenderHeight} / integer zoom {p.PixelScale}x";
+        if(p) rasterLabel.text=$"{p.RenderWidth} × {p.RenderHeight} / integer zoom {p.PixelScale}x";
         patternLabel.text=$"Bayer {Tone.values.patternSize}x{Tone.values.patternSize} / aligned";
         connectionLabel.text=keyFeedback.Length>0 ? keyFeedback : Manager.apiClient.ConnectionStatus;
     }

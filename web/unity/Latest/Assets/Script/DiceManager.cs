@@ -1,20 +1,20 @@
 using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
-using System; // �������������Ϊ��ʹ�� Action
+using System; // 必须引用这个，为了使用 Action
 public class DiceManager : MonoBehaviour
 {
-    [Header("�����з�����")]
-    public DiceSpawner[] spawners; // ���������4��Spawner�Ͻ�ȥ
+    [Header("绑定所有发射器")]
+    public DiceSpawner[] spawners; // 在这里把那4个Spawner拖进去
 
-    [Header("״̬")]
-    public bool isRolling = false; // �Ƿ�����Ͷ��������
+    [Header("状态")]
+    public bool isRolling = false; // 是否正在投掷过程中
 
     public int[] pointCounts = new int[7];
     public int grandTotal = 0;
     void Update()
     {
-        // ȫ�ֿ��ƣ����¿ո�������з�����һ����
+        // 全局控制：按下空格键，所有发射器一起发射
         //if (Input.GetKeyDown(KeyCode.Space) && !isRolling)
         //{
         //    StartCoroutine(RollAndCalculate());
@@ -24,11 +24,11 @@ public class DiceManager : MonoBehaviour
     {
         List<int> results = new List<int>();
 
-        // �������ƣ���ֹԽ��
+        // 保护机制：防止越界
         if (playerIndex < 0 || playerIndex >= spawners.Length)
             return results;
 
-        // ��ȡ��Ӧ������������
+        // 获取对应发射器的骰子
         foreach (var dice in spawners[playerIndex].spawnedDice)
         {
             results.Add(dice.currentPoints);
@@ -39,25 +39,25 @@ public class DiceManager : MonoBehaviour
     {
         isRolling = true;
         pointCounts = new int[7]; grandTotal = 0;
-        Debug.Log("=== ��ʼ��һ��Ͷ�� ===");
+        Debug.Log("=== 开始新一轮投掷 ===");
 
-        // 1. �������� Spawner ����
+        // 1. 命令所有 Spawner 开火
         foreach (var spawner in spawners)
         {
             if (spawner != null)
             {
-                // ���ﴫ�� 5���������� 4�� + 1��
-                // ����Ժ����ˡ�������˿����ӡ��Ĺ��ܣ����������ﴫ�����
+                // 这里传入 5，代表生成 4白 + 1红
+                // 如果以后做了“玩家输了扣骰子”的功能，可以在这里传入变量
                 spawner.ThrowDice(6);
             }
         }
 
-        // 2. �ȴ����ɽ��� (�ȴ� 5������ * ��� + ���⻺��)
+        // 2. 等待生成结束 (等待 5个骰子 * 间隔 + 额外缓冲)
         yield return new WaitForSeconds(1.5f);
 
-        // 3. ��̬�ȴ���ֱ���������Ӷ���ֹ
+        // 3. 动态等待：直到所有骰子都静止
         bool allStopped = false;
-        float timeOut = 10f; // 10�볬ʱ��ֹ��ѭ��
+        float timeOut = 10f; // 10秒超时防止死循环
         float timer = 0;
 
         while (!allStopped && timer < timeOut)
@@ -72,10 +72,10 @@ public class DiceManager : MonoBehaviour
                 }
             }
             timer += Time.deltaTime;
-            yield return null; // �ȴ���һ֡�ٴμ��
+            yield return null; // 等待下一帧再次检查
         }
 
-        // 4. ͳ�ƽ��
+        // 4. 统计结果
         CollectAndPrintResults();
 
         isRolling = false;
@@ -85,18 +85,18 @@ public class DiceManager : MonoBehaviour
     {
         isRolling = true;
         pointCounts = new int[7]; grandTotal = 0;
-        Debug.Log("=== ��ʼ��һ��Ͷ�� ===");
+        Debug.Log("=== 开始新一轮投掷 ===");
 
-        // 1. �������� Spawner ����
+        // 1. 命令所有 Spawner 开火
         foreach (var spawner in spawners)
         {
             if (spawner != null) spawner.ThrowDice();
         }
 
-        // 2. �ȴ����ɽ���
+        // 2. 等待生成结束
         yield return new WaitForSeconds(1.5f);
 
-        // 3. ��̬�ȴ���ֱ���������Ӷ���ֹ
+        // 3. 动态等待：直到所有骰子都静止
         bool allStopped = false;
         float timeOut = 10f;
         float timer = 0;
@@ -116,12 +116,12 @@ public class DiceManager : MonoBehaviour
             yield return null;
         }
 
-        // 4. ͳ�ƽ��
+        // 4. 统计结果
         CollectAndPrintResults();
 
         isRolling = false;
 
-        // ���ؼ����������������ˣ�ִ�лص�֪ͨ GameManager
+        // 【关键】所有事情做完了，执行回调通知 GameManager
         if (onRollingFinished != null)
         {
             onRollingFinished.Invoke();

@@ -10,15 +10,15 @@
     if(!document.createElement('canvas').getContext('webgl2')){fail('WebGL 2 is required. Please use a desktop browser with graphics acceleration.');return;}
     const manifest=await fetch('release.json',{cache:'no-store'}).then(r=>{if(!r.ok)throw Error('manifest');return r.json();});
     window.maskedDice.release=manifest;
-    status('Loading the latest tribunal��');
+    status('Loading the latest tribunal…');
     const script=document.createElement('script');script.src=manifest.loader;
     await new Promise((resolve,reject)=>{script.onload=resolve;script.onerror=reject;document.body.appendChild(script);});
     const instance=await createUnityInstance(canvas,{
       dataUrl:manifest.data,frameworkUrl:manifest.framework,codeUrl:manifest.wasm,streamingAssetsUrl:'StreamingAssets',
-      companyName:'DiscElysium',productName:'Masked Dice �� The Masked Tribunal',productVersion:manifest.version,
+      companyName:'DiscElysium',productName:'Masked Dice — The Masked Tribunal',productVersion:manifest.version,
       matchWebGLToCanvasSize:false,devicePixelRatio:1,
       showBanner:(text,type)=>{if(type==='error')fail('The game could not start. Please reload or use a desktop browser.');else console.warn(text);}
-    },value=>{progress.value=value;status('Loading the tribunal �� '+Math.round(value*100)+'%');});
+    },value=>{progress.value=value;status('Loading the tribunal — '+Math.round(value*100)+'%');});
     window.maskedDice.instance=instance;
     const local=['127.0.0.1','localhost'].includes(location.hostname);
     instance.SendMessage('BrowserGameBridge','ConfigureAI',local?location.origin:'https://masked-liars-dice-play.ngakeo1990hl.chatgpt.site');

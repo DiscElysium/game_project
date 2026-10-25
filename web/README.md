@@ -1,7 +1,7 @@
-# ���°� Masked Dice WebGL
+# 最新版 Masked Dice WebGL
 
-�汾 `2026.10.10-r3-web`���������� `gamejam1bitDeepSeek` �Ķ��� WebGL ���̡���������ҳֱ��Ƕ�� `/play.html`������ʵ�����������
+版本 `2026.10.10-r3-web`，基于最新 `gamejam1bitDeepSeek` 的独立 WebGL 工程。公开介绍页直接嵌入 `/play.html`，保留实体桌面操作。
 
-[��������������](https://masked-liars-dice.ngakeo1990hl.chatgpt.site/#play)
+[介绍与在线游玩](https://masked-liars-dice.ngakeo1990hl.chatgpt.site/#play)
 
-�����ļ���������֤�� [DEPLOYMENT.md](DEPLOYMENT.md)���ɵ� `unity/BrowserAI` ��������ʷ�ο������°�ʹ�� `unity/Latest`��
+部署、文件布局与验证见 [DEPLOYMENT.md](DEPLOYMENT.md)。旧的 `unity/BrowserAI` 仅保留历史参考；最新版使用 `unity/Latest`。

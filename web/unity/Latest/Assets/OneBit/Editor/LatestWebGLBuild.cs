@@ -12,7 +12,7 @@ public static class LatestWebGLBuild
     {
         EditorSceneManager.OpenScene("Assets/Scenes/gamejam.unity");
         OneBitTools.Validate();
-        PlayerSettings.productName="Masked Dice �� The Masked Tribunal"; PlayerSettings.companyName="DiscElysium";
+        PlayerSettings.productName="Masked Dice — The Masked Tribunal"; PlayerSettings.companyName="DiscElysium";
         PlayerSettings.bundleVersion=DeepSeekClient.BuildVersion;
         PlayerSettings.defaultWebScreenWidth=1280; PlayerSettings.defaultWebScreenHeight=720;
         PlayerSettings.runInBackground=true;
