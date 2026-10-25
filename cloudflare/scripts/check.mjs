@@ -1,0 +1,27 @@
+import assert from 'node:assert/strict';
+import {readFile,readdir,stat} from 'node:fs/promises';
+import {resolve,join} from 'node:path';
+import {gunzipSync} from 'node:zlib';
+import {publicAI} from '../src/public-ai.mjs';
+import worker from '../src/worker.mjs';
+const root=resolve(import.meta.dirname,'..'),version='2026.10.25-r3-web';
+const body={model:'deepseek-flash',messages:[{role:'system',content:'Play this fictional dice game. Return legal JSON.'},{role:'user',content:JSON.stringify({role:'Watcher',ownNormalDice:[1,2,3,6],ownSpecialDice:[6]})}],max_tokens:6000,thinking:{type:'enabled'},reasoning_effort:'low'};
+const request=(data=body,origin='https://game.test')=>new Request('https://game.test/api/chat',{method:'POST',headers:{'Content-Type':'application/json',Origin:origin},body:JSON.stringify(data)});
+let called=false;
+const raw='data: {"choices":[{"delta":{"reasoning_content":"Consider the bid."}}]}\n\ndata: [DONE]\n\n';
+const mock=async(url,options)=>{called=true;assert.equal(url,'https://api.deepseek.com/chat/completions');assert.equal(options.headers.Authorization,'Bearer test-credential');const payload=JSON.parse(options.body);assert.equal(payload.stream,true);assert.equal(payload.max_tokens,6000);return new Response(raw);};
+const env={DEEPSEEK_API_KEY:'test-credential'};
+assert.equal((await publicAI(request(body,'https://unrelated.test'),env,mock)).status,403);assert.equal(called,false);
+assert.equal((await publicAI(request(),{},mock)).status,503);
+assert.equal((await publicAI(request({...body,messages:[]}),env,mock)).status,400);
+const good=await publicAI(request(),env,mock);assert.equal(good.status,200);assert.equal(await good.text(),raw);
+const health=await worker.fetch(new Request('https://game.test/api/health'),env);assert.deepEqual(await health.json(),{configured:true,model:'deepseek-flash',version});
+const asset=await worker.fetch(new Request('https://game.test/game/play.html'),{ASSETS:{fetch:r=>new Response(new URL(r.url).pathname)}});assert.equal(await asset.text(),'/game/play.html');
+let files=0,bytes=0;
+async function scan(dir){for(const name of await readdir(dir)){const path=join(dir,name),s=await stat(path);if(s.isDirectory())await scan(path);else{files++;bytes+=s.size;assert.ok(s.size<=25*1024*1024,'Asset exceeds Cloudflare limit: '+path);const raw=await readFile(path);const data=name.endsWith('.unityweb')?gunzipSync(raw):raw;assert.ok(!data.includes(Buffer.from('chatgpt.site')),'Previous hosting remains in '+path);assert.ok(!/(?<![a-zA-Z0-9])sk-[a-zA-Z0-9]{32,}(?![a-zA-Z0-9])/.test(data.toString('latin1')),'Credential-like content in '+path);}}}
+await scan(join(root,'public'));await scan(join(root,'src'));
+const manifest=JSON.parse(await readFile(join(root,'public/game/release.json'),'utf8'));assert.equal(manifest.version,version);
+for(const kind of ['loader','framework','data','wasm'])assert.ok((await stat(join(root,'public/game',manifest[kind]))).size>0);
+const embed=await readFile(join(root,'public/play-embed.js'),'utf8');assert.ok(embed.includes("new URL('game/play.html',document.baseURI).href"));
+const player=await readFile(join(root,'public/game/player-v3.js'),'utf8');assert.ok(player.includes("'ConfigureAI',location.origin"));
+console.log(JSON.stringify({ok:true,version,files,bytes,checks:['self-contained assets','no previous hosting in decompressed game','no embedded credentials','same-origin iframe and AI','SSE forwarding','input validation','Cloudflare size limit']}));

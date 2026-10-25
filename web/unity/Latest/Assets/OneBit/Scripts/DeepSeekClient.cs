@@ -12,8 +12,8 @@ public sealed partial class DeepSeekClient : MonoBehaviour
     public string model="deepseek-flash";
     public bool enableThinking=true;
     [Range(10,180)] public int timeoutSeconds=55;
-    public const string BuildVersion="2026.10.10-r3-web";
-    public string serverOrigin="https://masked-liars-dice-play.ngakeo1990hl.chatgpt.site";
+    public const string BuildVersion="2026.10.25-r3-web";
+    public string serverOrigin="";
     public string LastStatus { get; private set; }="Not connected";
     public string ConnectionStatus { get; private set; }="Checking server AI";
     public bool CheckingConnection { get; private set; }
@@ -35,15 +35,25 @@ public sealed partial class DeepSeekClient : MonoBehaviour
     int sequence,activeId; long responseCode; string browserError; bool finished;
     AITrace activeTrace; DeepSeekStreamParser parser;
 #if UNITY_WEBGL && !UNITY_EDITOR
+    [DllImport("__Internal")] static extern string MD_AIOrigin();
     [DllImport("__Internal")] static extern void MD_AIStart(string target,int id,string url,string body,int timeout);
     [DllImport("__Internal")] static extern void MD_AICancel(int id);
 #endif
-    void Start() { LoadSettings(); StartCoroutine(CheckConnection()); }
+    void Awake()
+    {
+#if UNITY_WEBGL && !UNITY_EDITOR
+        serverOrigin=MD_AIOrigin();
+#endif
+    }
+    void Start() { LoadSettings(); if(!string.IsNullOrEmpty(serverOrigin)) StartCoroutine(CheckConnection()); }
     public void ConfigureServer(string origin)
-    { serverOrigin=origin.TrimEnd('/'); StartCoroutine(CheckConnection()); }
+    {
+        if(!Uri.TryCreate(origin,UriKind.Absolute,out var uri) || (uri.Scheme!="https" && uri.Scheme!="http")) return;
+        serverOrigin=uri.GetLeftPart(UriPartial.Authority); StartCoroutine(CheckConnection());
+    }
     public IEnumerator CheckConnection()
     {
-        if(CheckingConnection) yield break;
+        if(CheckingConnection || string.IsNullOrEmpty(serverOrigin)) yield break;
         CheckingConnection=true; ConnectionStatus="Verifying server AI";
         using(var request=UnityWebRequest.Get(serverOrigin+"/api/health"))
         {

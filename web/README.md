@@ -1,7 +1,5 @@
-# 最新版 Masked Dice WebGL
+# 历史 Unity WebGL 移植代码
 
-版本 `2026.10.10-r3-web`，基于最新 `gamejam1bitDeepSeek` 的独立 WebGL 工程。公开介绍页直接嵌入 `/play.html`，保留实体桌面操作。
+当前公开版本已迁至独立 Cloudflare Workers，部署入口和说明见 [../cloudflare/README.md](../cloudflare/README.md)。
 
-[介绍与在线游玩](https://masked-liars-dice.ngakeo1990hl.chatgpt.site/#play)
-
-部署、文件布局与验证见 [DEPLOYMENT.md](DEPLOYMENT.md)。旧的 `unity/BrowserAI` 仅保留历史参考；最新版使用 `unity/Latest`。
+本目录保留移植历史及 Unity 代码覆盖层。当前网站、字体、游戏资源和 AI 接口均不再使用此前的托管服务。

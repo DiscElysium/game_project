@@ -20,10 +20,9 @@
       showBanner:(text,type)=>{if(type==='error')fail('The game could not start. Please reload or use a desktop browser.');else console.warn(text);}
     },value=>{progress.value=value;status('Loading the tribunal — '+Math.round(value*100)+'%');});
     window.maskedDice.instance=instance;
-    const local=['127.0.0.1','localhost'].includes(location.hostname);
-    instance.SendMessage('BrowserGameBridge','ConfigureAI',local?location.origin:'https://masked-liars-dice-play.ngakeo1990hl.chatgpt.site');
+    instance.SendMessage('BrowserGameBridge','ConfigureAI',location.origin);
     loading.hidden=true;full.hidden=false;canvas.focus();
-    const parents=new Set(['https://discelysium.github.io','https://masked-liars-dice.ngakeo1990hl.chatgpt.site',location.origin]);
+    const parents=new Set([location.origin,'https://discelysium.github.io']);
     window.addEventListener('message',event=>{if(parents.has(event.origin)&&event.data?.type==='MASKED_DICE_FOCUS')canvas.focus();});
     if(window.parent!==window)window.parent.postMessage({type:'MASKED_DICE_READY',version:manifest.version},'*');
     window.maskedDice.command=command=>instance.SendMessage('BrowserGameBridge','Command',command);

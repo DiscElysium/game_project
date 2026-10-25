@@ -8,12 +8,10 @@
   <meta property="og:title" content="假面骰子 · Masked Liar’s Dice">
   <meta property="og:description" content="AI 生成微表情。你决定相信谁。">
   <meta property="og:type" content="website">
-  <meta property="og:url" content="https://masked-liars-dice.ngakeo1990hl.chatgpt.site">
   <meta name="twitter:card" content="summary">
-  <link rel="canonical" href="https://masked-liars-dice.ngakeo1990hl.chatgpt.site">
   <title>假面骰子 · Masked Liar’s Dice</title>
   <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32' shape-rendering='crispEdges'%3E%3Cpath fill='%23321b12' d='M0 0h32v32H0z'/%3E%3Cpath fill='%23f5f0e6' d='M4 4h24v24H4z'/%3E%3Cpath fill='%23321b12' d='M8 8h4v4H8zM20 8h4v4h-4zM14 14h4v4h-4zM8 20h4v4H8zM20 20h4v4h-4z'/%3E%3C/svg%3E">
-  <link rel="preload" href="https://masked-liars-dice.ngakeo1990hl.chatgpt.site/assets/pixel.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="preload" href="https://masked-dice-tribunal.1598509191.workers.dev/assets/pixel.woff2" as="font" type="font/woff2" crossorigin>
   <link rel="stylesheet" href="design.css?v=5">
   <link rel="stylesheet" href="frames.css?v=6">
   <link rel="stylesheet" href="play-embed.css?v=r3">
@@ -45,8 +43,8 @@
       <div class="hero-scene">
         <figure class="game-frame">
           <div class="frame-index"><span>THE TABLE / 01</span><span>底牌 · 未知</span></div>
-          <a class="capture-link" href="https://masked-liars-dice.ngakeo1990hl.chatgpt.site/assets/latest-table.png" target="_blank" rel="noopener" aria-label="查看游戏实机完整原图"><img src="https://masked-liars-dice.ngakeo1990hl.chatgpt.site/assets/latest-table.png" width="1280" height="720" loading="lazy" alt="最新版游戏实机，保留原生深棕色与纸色像素抖动渲染"></a>
-          <figcaption><span>游戏实机 / 原生渲染</span><a href="https://masked-liars-dice.ngakeo1990hl.chatgpt.site/assets/latest-table.png" target="_blank" rel="noopener">查看完整画面</a></figcaption>
+          <a class="capture-link" href="https://masked-dice-tribunal.1598509191.workers.dev/assets/latest-table.png" target="_blank" rel="noopener" aria-label="查看游戏实机完整原图"><img src="https://masked-dice-tribunal.1598509191.workers.dev/assets/latest-table.png" width="1280" height="720" loading="lazy" alt="最新版游戏实机，保留原生深棕色与纸色像素抖动渲染"></a>
+          <figcaption><span>游戏实机 / 原生渲染</span><a href="https://masked-dice-tribunal.1598509191.workers.dev/assets/latest-table.png" target="_blank" rel="noopener">查看完整画面</a></figcaption>
         </figure>
       </div>
     </section>
@@ -56,7 +54,7 @@
     <section id="play" class="play-section page-width" aria-labelledby="play-title">
       <div class="play-heading"><div><p class="eyebrow">PLAY / 最新网页版</p><h2 id="play-title">不用离开这里。<br>现在，轮到你。</h2></div><p>与三名 AI 对手同桌，观察表情、衡量概率，再决定是否叫破谎言。新版面具与悬崖议庭已就位。</p></div>
       <div class="embedded-player" id="embedded-player">
-        <div class="play-cover" id="play-cover"><img src="https://masked-liars-dice.ngakeo1990hl.chatgpt.site/assets/latest-table.png" width="1280" height="720" alt="最新版深棕色 1bit 游戏实机：三名不同面具的对手与悬崖议庭"><div class="play-cover-action"><button class="button solid" id="load-game" type="button">在此加载游戏</button><p id="play-status" aria-live="polite">直接在此页面游玩 · 建议使用键盘与鼠标</p></div></div>
+        <div class="play-cover" id="play-cover"><img src="https://masked-dice-tribunal.1598509191.workers.dev/assets/latest-table.png" width="1280" height="720" alt="最新版深棕色 1bit 游戏实机：三名不同面具的对手与悬崖议庭"><div class="play-cover-action"><button class="button solid" id="load-game" type="button">在此加载游戏</button><p id="play-status" aria-live="polite">直接在此页面游玩 · 建议使用键盘与鼠标</p></div></div>
       </div>
       <div class="play-toolbar"><p><kbd>TAB</kbd> 观察／牌桌　<kbd>右键</kbd> 环顾　<kbd>F2</kbd> 画面　<kbd>F3</kbd> AI 记录与调参</p><button id="expand-game" class="text-link" type="button" disabled>全屏游玩 ↗</button></div>
       <p class="play-footnote">AI 根据本局手牌与叫牌历史实时生成反应。游戏中的 F3 界面可查看模型返回的推理、输出和实际决策。界面为英文。</p>
@@ -93,7 +91,7 @@
       <div class="abilities"><div><p class="eyebrow">叫牌之后 / 一次特殊行动</p><h3>改变信息，<br>也改变局势。</h3></div><article><span class="ability-code">[ X-RAY ]</span><h4>透视 · 看见秘密</h4><p>让一名对手的骰盅透明 3 秒，观察普通骰子的点数，为接下来的判断积累信息。</p></article><article><span class="ability-code">[ STEAL ]</span><h4>窃取 · 夺走底牌</h4><p>猜中一名对手的特殊骰子点数，将它收入自己的手牌。猜错则没有转移。</p></article></div>
     </section>
 
-    <section id="game-view" class="world page-width" aria-labelledby="world-title"><div class="world-heading"><p class="eyebrow"><span class="section-number">04</span> / AT THE TABLE</p><h2 id="world-title">坐进赌局。<br>听骰子落定。</h2><p>星盘、狐狸与羊角，三张不同的假面。<br>三名对手守着各自的秘密。<br>下一句叫牌，会从谁开始？</p></div><figure class="game-frame world-figure"><a class="capture-link" href="https://masked-liars-dice.ngakeo1990hl.chatgpt.site/assets/latest-round.png" target="_blank" rel="noopener" aria-label="查看对局实机完整原图"><img src="https://masked-liars-dice.ngakeo1990hl.chatgpt.site/assets/latest-round.png" width="1280" height="720" loading="lazy" alt="最新版游戏实机，保留原生深棕色与纸色像素抖动渲染"></a><figcaption><span>游戏实机 / 对局画面</span><a href="https://masked-liars-dice.ngakeo1990hl.chatgpt.site/assets/latest-round.png" target="_blank" rel="noopener">查看完整画面</a></figcaption></figure></section>
+    <section id="game-view" class="world page-width" aria-labelledby="world-title"><div class="world-heading"><p class="eyebrow"><span class="section-number">04</span> / AT THE TABLE</p><h2 id="world-title">坐进赌局。<br>听骰子落定。</h2><p>星盘、狐狸与羊角，三张不同的假面。<br>三名对手守着各自的秘密。<br>下一句叫牌，会从谁开始？</p></div><figure class="game-frame world-figure"><a class="capture-link" href="https://masked-dice-tribunal.1598509191.workers.dev/assets/latest-round.png" target="_blank" rel="noopener" aria-label="查看对局实机完整原图"><img src="https://masked-dice-tribunal.1598509191.workers.dev/assets/latest-round.png" width="1280" height="720" loading="lazy" alt="最新版游戏实机，保留原生深棕色与纸色像素抖动渲染"></a><figcaption><span>游戏实机 / 对局画面</span><a href="https://masked-dice-tribunal.1598509191.workers.dev/assets/latest-round.png" target="_blank" rel="noopener">查看完整画面</a></figcaption></figure></section>
     <section class="closing page-width"><div><p class="eyebrow">THE NEXT MOVE IS YOURS.</p><h2>下一次，<br>你相信哪一张脸？</h2></div><a class="button solid" href="#play">坐进牌桌</a></section>
   </main>
   <footer class="site-footer page-width"><a class="footer-brand" href="#">假面骰子 <span>/ MASKED LIAR’S DICE</span></a><span>一场关于概率、表情与信任的实验。</span><a class="text-link" href="#">回到顶部</a></footer>

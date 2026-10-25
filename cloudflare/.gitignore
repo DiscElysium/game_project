@@ -1,0 +1,10 @@
+node_modules/
+.wrangler/
+.dry-run/
+.dev.vars
+.dev.vars.*
+.env
+.env.*
+*.dpapi
+public/game/Build/
+*.log

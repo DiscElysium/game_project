@@ -1,4 +1,11 @@
 mergeInto(LibraryManager.library, {
+  MD_AIOrigin: function () {
+    var origin = window.location.origin;
+    var size = lengthBytesUTF8(origin) + 1;
+    var pointer = _malloc(size);
+    stringToUTF8(origin, pointer, size);
+    return pointer;
+  },
   MD_BrowserState: function (value) {
     if (window.maskedDice) window.maskedDice.state = JSON.parse(UTF8ToString(value));
   },

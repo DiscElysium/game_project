@@ -1,0 +1,12 @@
+{
+  "name": "masked-dice-cloudflare",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "wrangler dev --ip 127.0.0.1 --port 4175",
+    "check": "node scripts/check.mjs",
+    "preview:deploy": "wrangler deploy --dry-run --outdir .dry-run",
+    "deploy": "npm run check && wrangler deploy"
+  },
+  "devDependencies": { "wrangler": "4.152.0" }
+}

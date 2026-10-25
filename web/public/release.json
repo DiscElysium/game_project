@@ -1,7 +1,7 @@
 {
-  "version": "2026.10.10-r3-web",
-  "data": "Build/9f6777b9e983-latest.data.unityweb",
-  "framework": "Build/0399156de687-latest.framework.js.unityweb",
+  "version": "2026.10.25-r3-web",
+  "data": "Build/eec3ccc39d7e-latest.data.unityweb",
+  "framework": "Build/61208807a0cb-latest.framework.js.unityweb",
   "loader": "Build/d7a3ee7acf70-latest.loader.js",
-  "wasm": "Build/0430d1d75feb-latest.wasm.unityweb"
+  "wasm": "Build/c9d72e840d99-latest.wasm.unityweb"
 }
