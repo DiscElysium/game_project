@@ -1,0 +1,16 @@
+import assert from 'node:assert/strict';
+import { publicAI } from '../worker/public-ai.js';
+const body={model:'deepseek-flash',messages:[{role:'system',content:'Play this fictional dice game. Return legal JSON.'},{role:'user',content:JSON.stringify({role:'Watcher',ownNormalDice:[1,2,3,6],ownSpecialDice:[6]})}],max_tokens:6000,thinking:{type:'enabled'},reasoning_effort:'low'};
+const request=(data=body,origin='https://game.test')=>new Request('https://game.test/api/chat',{method:'POST',headers:{'Content-Type':'application/json',Origin:origin},body:JSON.stringify(data)});
+let called=false;
+const raw='data: {"choices":[{"delta":{"reasoning_content":"Consider the bid."}}]}\n\ndata: [DONE]\n\n';
+const mock=async(url,options)=>{called=true;assert.equal(url,'https://api.deepseek.com/chat/completions');assert.equal(options.headers.Authorization,'Bearer server-only-test-value');const payload=JSON.parse(options.body);assert.equal(payload.stream,true);assert.equal(payload.thinking.type,'enabled');assert.equal(payload.max_tokens,6000);assert.equal(payload.messages[1].content,body.messages[1].content);return new Response(raw,{headers:{'Content-Type':'text/event-stream'}});};
+const env={DEEPSEEK_API_KEY:'server-only-test-value'};
+assert.equal((await publicAI(request(body,'https://unrelated.test'),env,mock)).status,403);assert.equal(called,false);
+assert.equal((await publicAI(request(),{},mock)).status,503);
+assert.equal((await publicAI(request({...body,messages:[]}),env,mock)).status,400);
+assert.equal((await publicAI(request({...body,model:'other-provider'}),env,mock)).status,400);
+const good=await publicAI(request(body,'https://discelysium.github.io'),env,mock);assert.equal(good.status,200);assert.equal(good.headers.get('Access-Control-Allow-Origin'),'https://discelysium.github.io');assert.equal(await good.text(),raw);
+assert.ok(!JSON.stringify([...good.headers]).includes(env.DEEPSEEK_API_KEY));
+const health=await publicAI(new Request('https://game.test/api/health'),env,mock);assert.deepEqual(await health.json(),{configured:true,model:'deepseek-flash',version:'2026.10.10-r3-web'});
+console.log('Public AI: origin validation, bounded game schema, server-only credentials and unchanged live SSE forwarding passed.');
