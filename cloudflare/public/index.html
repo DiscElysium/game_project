@@ -15,6 +15,7 @@
   <link rel="stylesheet" href="design.css?v=5">
   <link rel="stylesheet" href="frames.css?v=6">
   <link rel="stylesheet" href="play-embed.css?v=r3">
+  <link rel="stylesheet" href="creator-note.css?v=20261027">
   <script src="app.js?v=5" defer></script>
   <script src="frames.js?v=6" defer></script>
   <script src="play-embed.js?v=r3" defer></script>
@@ -23,7 +24,7 @@
   <a class="skip-link" href="#main">跳到主要内容</a>
   <header class="site-header page-width">
     <a class="brand" href="#" aria-label="假面骰子，返回顶部"><span class="die-mark" aria-hidden="true"><i></i><i></i><i></i><i></i></span><span>假面骰子<small>MASKED LIAR’S DICE</small></span></a>
-    <nav aria-label="主要导航"><a href="#play">在线游玩</a><a href="#expressions">AI 微表情</a><a href="#mindgame">心理博弈</a><a href="#rules">游戏规则</a></nav>
+    <nav aria-label="主要导航"><a href="#play">在线游玩</a><a href="#expressions">AI 微表情</a><a href="#mindgame">心理博弈</a><a href="#rules">游戏规则</a><a href="#creator">设计思考</a></nav>
     <span class="header-meta">独立游戏 / 一场信任实验</span>
   </header>
   <main id="main">
@@ -92,6 +93,41 @@
     </section>
 
     <section id="game-view" class="world page-width" aria-labelledby="world-title"><div class="world-heading"><p class="eyebrow"><span class="section-number">04</span> / AT THE TABLE</p><h2 id="world-title">坐进赌局。<br>听骰子落定。</h2><p>星盘、狐狸与羊角，三张不同的假面。<br>三名对手守着各自的秘密。<br>下一句叫牌，会从谁开始？</p></div><figure class="game-frame world-figure"><a class="capture-link" href="assets/latest-round.png" target="_blank" rel="noopener" aria-label="查看对局实机完整原图"><img src="assets/latest-round.png" width="1280" height="720" loading="lazy" alt="最新版游戏实机，保留原生深棕色与纸色像素抖动渲染"></a><figcaption><span>游戏实机 / 对局画面</span><a href="assets/latest-round.png" target="_blank" rel="noopener">查看完整画面</a></figcaption></figure></section>
+    <section id="creator" class="creator-note page-width" aria-labelledby="creator-title">
+      <div class="creator-heading">
+        <p class="eyebrow"><span class="section-number">05</span> / THE DESIGNER’S NOTE</p>
+        <h2 id="creator-title">知其然，<br>也知其所以然。</h2>
+        <p class="creator-lead">我对 AI 的理解，来自原理，也来自大量实践。理解它的运行逻辑，让我更能判断它能做什么、适合做什么，以及怎样把它放进一个有效的系统。</p>
+        <p class="creator-disciplines">概率建模 × 语言模型 × 交互设计</p>
+      </div>
+      <div class="creator-story">
+        <article>
+          <p class="creator-step">01 / 理解问题</p>
+          <h3>“吹牛”的背后，也有数学。</h3>
+          <p>这个 Game Jam 项目以大话骰为原型。我先用概率模型处理叫牌与质疑：看似依赖吹牛和表演的游戏，同样有理性的决策基础。测试时，这套策略一度让我连续多局难以取胜；但反复交手后，我也开始摸清它的习惯。</p>
+        </article>
+        <article>
+          <p class="creator-step">02 / 设计分工</p>
+          <h3>把性格，变成影响决策的参数。</h3>
+          <p>在混合原型中，我让大语言模型结合手牌与当前对局记录，输出风险偏好，再由数学策略调整质疑阈值、叫牌幅度与诈唬倾向。激进或冷静，因此成为策略中的实际差异；对白与微表情则把这些差异带到玩家面前。</p>
+        </article>
+        <article>
+          <p class="creator-step">03 / 验证与迭代</p>
+          <h3>让技术判断，落成可以体验的设计。</h3>
+          <p>我通过实际对局检验对手能否回应玩家的行为、表现与策略是否一致，并让模型输出可以被观察和调试。当前演示继续探索大模型决策与规则校验；更长期的玩家习惯建模，是我希望推进的方向。</p>
+        </article>
+      </div>
+      <div class="creator-architecture">
+        <p class="creator-diagram-label">混合原型 / 参数驱动的决策分工</p>
+        <ol class="creator-pipeline" aria-label="混合原型：对局信息进入语言模型，风险参数交给数学策略执行">
+          <li><span class="creator-node-index">INPUT / 01</span><h3>读取对局</h3><p>手牌、叫牌与当前对局记录</p></li>
+          <li><span class="creator-node-index">LANGUAGE MODEL / 02</span><h3>调整风险偏好</h3><p>大语言模型输出风险参数</p></li>
+          <li><span class="creator-node-index">MATHEMATICAL STRATEGY / 03</span><h3>执行数学策略</h3><p>调整阈值与评分，<br>执行叫牌或质疑。</p></li>
+        </ol>
+        <p class="creator-version-note">迭代说明：上述参数调节对应混合原型。上方可玩版本采用大模型生成行动、游戏规则校验，并利用当前对局历史；长期玩家学习尚属探索方向。</p>
+      </div>
+      <div class="creator-takeaway"><span aria-hidden="true">[ 我的工作方式 ]</span><p>理解原理，判断边界，设计分工。<br>在实践中，把 AI 转化为设计价值。</p></div>
+    </section>
     <section class="closing page-width"><div><p class="eyebrow">THE NEXT MOVE IS YOURS.</p><h2>下一次，<br>你相信哪一张脸？</h2></div><a class="button solid" href="#play">坐进牌桌</a></section>
   </main>
   <footer class="site-footer page-width"><a class="footer-brand" href="#">假面骰子 <span>/ MASKED LIAR’S DICE</span></a><span>一场关于概率、表情与信任的实验。</span><a class="text-link" href="#">回到顶部</a></footer>
