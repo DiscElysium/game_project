@@ -5,7 +5,7 @@ const [sitePath,playerPath,buildPath]=process.argv.slice(2).map(p=>resolve(p));
 if(!sitePath||!playerPath||!buildPath)throw Error('Pass introduction, player and Unity Build directories.');
 const root=resolve(import.meta.dirname,'..'),pub=join(root,'public'),game=join(pub,'game');
 await mkdir(join(pub,'assets'),{recursive:true});await mkdir(join(game,'Build'),{recursive:true});
-for(const name of ['index.html','design.css','frames.css','frames.js','app.js','play-embed.css','play-embed.js','creator-note.css']) {
+for(const name of ['index.html','design.css','frames.css','frames.js','app.js','play-embed.css','play-embed.js','creator-note.css','bilingual.css','i18n.js']) {
   let content=await readFile(join(sitePath,name),'utf8');
   if(name==='index.html')content=content.replace(/<meta property="og:url"[^>]*>\s*/g,'').replace(/<link rel="canonical"[^>]*>\s*/g,'');
   if(name==='play-embed.js') {

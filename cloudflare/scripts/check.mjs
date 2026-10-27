@@ -22,6 +22,6 @@ async function scan(dir){for(const name of await readdir(dir)){const path=join(d
 await scan(join(root,'public'));await scan(join(root,'src'));
 const manifest=JSON.parse(await readFile(join(root,'public/game/release.json'),'utf8'));assert.equal(manifest.version,version);
 for(const kind of ['loader','framework','data','wasm'])assert.ok((await stat(join(root,'public/game',manifest[kind]))).size>0);
-const embed=await readFile(join(root,'public/play-embed.js'),'utf8');assert.ok(embed.includes("new URL('game/play.html',document.baseURI).href"));
+const embed=await readFile(join(root,'public/play-embed.js'),'utf8');assert.ok(embed.includes("new URL('game/play.html',configured||document.baseURI)"));
 const player=await readFile(join(root,'public/game/player-v3.js'),'utf8');assert.ok(player.includes("'ConfigureAI',location.origin"));
 console.log(JSON.stringify({ok:true,version,files,bytes,checks:['self-contained assets','no previous hosting in decompressed game','no embedded credentials','same-origin iframe and AI','SSE forwarding','input validation','Cloudflare size limit']}));
